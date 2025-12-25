@@ -22,7 +22,7 @@ var wake_cmd_handler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Mes
 		return
 	}
 
-	if !slices.Contains(valid_subnets, wake_cmd.Subnet) {
+	if !slices.Contains(valid_subnets, wake_cmd.BroadcastIP) {
 		log.Printf("Subnet '%s' not valid for this runner\n", wake_cmd.Subnet)
 		return
 	}
