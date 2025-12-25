@@ -9,9 +9,8 @@ type WakeCommand struct {
 }
 
 type PingCommand struct {
-	EventID   uuid.UUID `json:"event_id"`
-	Subnet    string    `json:"subnet"`
-	IpAddress string    `json:"ip"`
+	EventID     uuid.UUID `json:"event_id"`
+	IpAddresses []string  `json:"ip_list"`
 }
 
 type RunnerResponse struct {

@@ -23,17 +23,17 @@ var wake_cmd_handler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Mes
 	}
 
 	if !slices.Contains(valid_subnets, wake_cmd.BroadcastIP) {
-		log.Printf("Subnet '%s' not valid for this runner\n", wake_cmd.Subnet)
+		log.Printf("Subnet '%s' not valid for this runner\n", wake_cmd.BroadcastIP)
 		return
 	}
 
-	err = wake_pc(wake_cmd.MacAddress, wake_cmd.Subnet)
+	err = wake_pc(wake_cmd.MacAddress, wake_cmd.BroadcastIP)
 	if err != nil {
 		log.Printf("Failed to send WakeOnLan packet: %s\n", err.Error())
 		return
 	}
 
-	log.Printf("Processed wake command for %s on %s\n", wake_cmd.MacAddress, wake_cmd.Subnet)
+	log.Printf("Processed wake command for %s on %s\n", wake_cmd.MacAddress, wake_cmd.BroadcastIP)
 }
 
 var ping_cmd_handler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Message) {

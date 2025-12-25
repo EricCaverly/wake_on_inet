@@ -7,9 +7,11 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 )
 
+require github.com/google/uuid v1.6.0 // indirect
+
 require (
-	github.com/EricCaverly/wake_on_inet/common v0.0.0-20251225054821-4207c6c69230
+	github.com/EricCaverly/wake_on_inet/common v0.0.0-20251225193826-18806e7db711
 	github.com/gorilla/websocket v1.5.3 // indirect
-	golang.org/x/net v0.44.0 // indirect
-	golang.org/x/sync v0.17.0 // indirect
+	golang.org/x/net v0.48.0 // indirect
+	golang.org/x/sync v0.19.0 // indirect
 )
