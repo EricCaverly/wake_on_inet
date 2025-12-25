@@ -5,4 +5,4 @@ wake_command_topic: woi/wake
 ping_command_topic: woi/ping
 response_topic: woi/resp
 qos: 1
-subnets: [192.168.101.0]
+subnets: [192.168.101.0/24, 192.168.102.0/24]
