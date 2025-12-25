@@ -18,6 +18,8 @@ func main() {
 		panic(err)
 	}
 
+	valid_subnets = cfg.Subnets
+
 	c_sig := make(chan os.Signal, 1)
 	signal.Notify(c_sig, os.Interrupt, syscall.SIGTERM)
 	runner_exit_chan = make(chan error)
@@ -51,6 +53,15 @@ var disco_handler mqtt.ConnectionLostHandler = func(client mqtt.Client, err erro
 	runner_exit_chan <- err
 }
 
+func sub(client mqtt.Client, topic string, qos byte, handler mqtt.MessageHandler) error {
+	wake_tok := client.Subscribe(topic, qos, wake_cmd_handler)
+	if wake_tok.Wait() && wake_tok.Error() != nil {
+		wake_tok.Error()
+	}
+	log.Printf("Subscribed to %s\n", topic)
+	return nil
+}
+
 func work(cfg Config) (mqtt.Client, error) {
 
 	// https://dev.to/emqx/how-to-use-mqtt-in-golang-2oek
@@ -70,9 +81,11 @@ func work(cfg Config) (mqtt.Client, error) {
 		return client, token.Error()
 	}
 
-	tok := client.Subscribe(cfg.CommandTopic, byte(cfg.CommandQOS), cmd_handler)
-	if tok.Wait() && tok.Error() != nil {
-		return client, tok.Error()
+	if err := sub(client, cfg.WakeCommandTopic, byte(cfg.CommandQOS), wake_cmd_handler); err != nil {
+		return client, err
+	}
+	if err := sub(client, cfg.PingCommandTopic, byte(cfg.CommandQOS), ping_cmd_handler); err != nil {
+		return client, err
 	}
 
 	return client, nil

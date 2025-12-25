@@ -1,3 +1,5 @@
+github.com/EricCaverly/wake_on_inet/common v0.0.0-20251225054821-4207c6c69230 h1:YJ9RfXJeYuNwjXFbLHCA+Di6Qq93Jpu7UGby8dfV4Sw=
+github.com/EricCaverly/wake_on_inet/common v0.0.0-20251225054821-4207c6c69230/go.mod h1:zC81MrnOUtuGgYy3v76NxPxcxkUIFaeOqe7SyriKY40=
 github.com/eclipse/paho.mqtt.golang v1.5.1 h1:/VSOv3oDLlpqR2Epjn1Q7b2bSTplJIeV2ISgCl2W7nE=
 github.com/eclipse/paho.mqtt.golang v1.5.1/go.mod h1:1/yJCneuyOoCOzKSsOTUc0AJfpsItBGWvYpBLimhArU=
 github.com/gorilla/websocket v1.5.3 h1:saDtZ6Pbx/0u+bgYQ3q96pZgCzfhKXGPqt7kZ72aNNg=

@@ -1,6 +1,8 @@
 broker: wss://mqtt.ericc.ninja:443
 username: Cycle0882
 password_file: password.txt
-command_topic: woi/cmd
+wake_command_topic: woi/wake
+ping_command_topic: woi/ping
 response_topic: woi/resp
 qos: 1
+subnets: [192.168.101.0]

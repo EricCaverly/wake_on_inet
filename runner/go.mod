@@ -8,6 +8,7 @@ require (
 )
 
 require (
+	github.com/EricCaverly/wake_on_inet/common v0.0.0-20251225054821-4207c6c69230
 	github.com/gorilla/websocket v1.5.3 // indirect
 	golang.org/x/net v0.44.0 // indirect
 	golang.org/x/sync v0.17.0 // indirect

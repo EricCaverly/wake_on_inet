@@ -8,14 +8,17 @@ import (
 )
 
 type Config struct {
-	Broker        string `yaml:"broker"`
-	ClientID      string `yaml:"client_id"`
-	Username      string `yaml:"username"`
-	password      string
-	PasswordFile  string `yaml:"password_file"`
-	CommandTopic  string `yaml:"command_topic"`
-	CommandQOS    int    `yaml:"qos"`
-	ResponseTopic string `yaml:"response_topic"`
+	Broker           string   `yaml:"broker"`
+	ClientID         string   `yaml:"client_id"`
+	Username         string   `yaml:"username"`
+	PasswordFile     string   `yaml:"password_file"`
+	WakeCommandTopic string   `yaml:"wake_command_topic"`
+	PingCommandTopic string   `yaml:"ping_command_topic"`
+	CommandQOS       int      `yaml:"qos"`
+	ResponseTopic    string   `yaml:"response_topic"`
+	Subnets          []string `yaml:"subnets"`
+
+	password string
 }
 
 func load_cfg(path string) (Config, error) {
