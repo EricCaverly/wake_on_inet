@@ -4,47 +4,11 @@ import (
 	"log"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 	"time"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
-	"gopkg.in/yaml.v3"
 )
-
-type Config struct {
-	Broker        string `yaml:"broker"`
-	ClientID      string `yaml:"client_id"`
-	Username      string `yaml:"username"`
-	password      string
-	PasswordFile  string `yaml:"password_file"`
-	CommandTopic  string `yaml:"command_topic"`
-	CommandQOS    int    `yaml:"qos"`
-	ResponseTopic string `yaml:"response_topic"`
-}
-
-func load_cfg(path string) (Config, error) {
-	var cfg Config
-
-	contents, err := os.ReadFile(path)
-	if err != nil {
-		return cfg, err
-	}
-
-	err = yaml.Unmarshal(contents, &cfg)
-	if err != nil {
-		return cfg, err
-	}
-
-	pw, err := os.ReadFile(cfg.PasswordFile)
-	if err != nil {
-		return cfg, err
-	}
-
-	cfg.password = strings.TrimSpace(string(pw))
-
-	return cfg, err
-}
 
 var runner_exit_chan chan error
 
@@ -76,10 +40,6 @@ func main() {
 			time.Sleep(2 * time.Second)
 		}
 	}
-}
-
-var cmd_handler mqtt.MessageHandler = func(client mqtt.Client, msg mqtt.Message) {
-	log.Printf("Received message: %s from topic: %s\n", msg.Payload(), msg.Topic())
 }
 
 var conn_handler mqtt.OnConnectHandler = func(client mqtt.Client) {
