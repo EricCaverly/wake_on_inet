@@ -54,7 +54,7 @@ var disco_handler mqtt.ConnectionLostHandler = func(client mqtt.Client, err erro
 }
 
 func sub(client mqtt.Client, topic string, qos byte, handler mqtt.MessageHandler) error {
-	wake_tok := client.Subscribe(topic, qos, wake_cmd_handler)
+	wake_tok := client.Subscribe(topic, qos, handler)
 	if wake_tok.Wait() && wake_tok.Error() != nil {
 		wake_tok.Error()
 	}
